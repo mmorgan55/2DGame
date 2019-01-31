@@ -31,4 +31,8 @@ public class Player implements GameObject {
     rectangle.set(point.x - rectangle.width() / 2, point.y - rectangle.height() / 2,
         point.x + rectangle.width() / 2, point.y + rectangle.height() / 2);
   }
+
+  public Rect getRectangle() {
+    return rectangle;
+  }
 }
