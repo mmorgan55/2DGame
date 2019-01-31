@@ -22,7 +22,7 @@ public class MainThread extends Thread {
   @Override
   public void run() {
     long startTime;
-    long timeMillis = 1000 / MAX_FPS;
+    long timeMillis;
     long waitTime;
     int frameCount = 0;
     long totalTime = 0;
@@ -65,7 +65,7 @@ public class MainThread extends Thread {
         averageFPS = 1000/((totalTime / frameCount) / 1000000);
         frameCount = 0;
         totalTime = 0;
-        System.out.print(averageFPS);
+        System.out.println(averageFPS);
       }
     }
   }
