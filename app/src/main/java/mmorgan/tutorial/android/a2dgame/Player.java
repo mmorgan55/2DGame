@@ -29,6 +29,6 @@ public class Player implements GameObject {
 
   public void update(Point point) {
     rectangle.set(point.x - rectangle.width() / 2, point.y - rectangle.height() / 2,
-        point.x + rectangle.width() / 2, point.y - rectangle.height() / 2);
+        point.x + rectangle.width() / 2, point.y + rectangle.height() / 2);
   }
 }
