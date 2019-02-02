@@ -1,6 +1,8 @@
 package mmorgan.tutorial.android.a2dgame;
 
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import java.util.ArrayList;
 
 public class ObstacleManager {
@@ -10,6 +12,7 @@ public class ObstacleManager {
   private int obstacleGap;
   private int obstacleHeight;
   private int color;
+  private int score;
 
   private long startTime;
   private long initTime;
@@ -48,7 +51,7 @@ public class ObstacleManager {
     int elapsedTime = (int) (System.currentTimeMillis() - startTime);
     startTime = System.currentTimeMillis();
     float speed =
-        (float) (Math.sqrt(1 + (startTime - initTime) / 1000.0)) * (Constants.SCREEN_HEIGHT / 10000.0f);
+        (float) (Math.sqrt(1 + (startTime - initTime) / 2000.0)) * (Constants.SCREEN_HEIGHT / 10000.0f);
     for (Obstacle ob : obstacles) {
       ob.incrementY(speed * elapsedTime);
     }
@@ -58,6 +61,7 @@ public class ObstacleManager {
       obstacles.add(0, new Obstacle(obstacleHeight, color, startX,
           obstacles.get(0).getRectangle().top - obstacleHeight - obstacleGap, playerGap));
       obstacles.remove(obstacles.size() - 1);
+      score++;
     }
 
   }
@@ -66,5 +70,9 @@ public class ObstacleManager {
     for (Obstacle ob : obstacles) {
       ob.draw(canvas);
     }
+    Paint paint = new Paint();
+    paint.setTextSize(100);
+    paint.setColor(Color.GREEN);
+    canvas.drawText("" + score, 50, 50 + paint.descent() - paint.ascent(), paint);
   }
 }
