@@ -98,7 +98,10 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     obstacleManager.draw(canvas);
 
     if (gameOver) {
-
+      Paint paint = new Paint();
+      paint.setTextSize(100);
+      paint.setColor(Color.MAGENTA);
+      drawCenterText(canvas, paint, "Game Over");
     }
   }
 
