@@ -3,6 +3,7 @@ package mmorgan.tutorial.android.a2dgame;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.view.MotionEvent;
@@ -12,6 +13,7 @@ import android.view.SurfaceView;
 public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
   private MainThread thread;
+  private Rect r = new Rect();
   private Player player;
   private Point playerPoint;
   private ObstacleManager obstacleManager;
@@ -53,7 +55,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
 
   @Override
   public void surfaceDestroyed(SurfaceHolder holder) {
-    boolean retry = true;
     while (true) {
       try {
         thread.setRunning(false);
@@ -61,7 +62,6 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
       } catch (Exception ex) {
         ex.printStackTrace();
       }
-      retry = false;
     }
   }
 
@@ -96,6 +96,10 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
     canvas.drawColor(Color.WHITE);
     player.draw(canvas);
     obstacleManager.draw(canvas);
+
+    if (gameOver) {
+
+    }
   }
 
   public void update() {
@@ -107,6 +111,17 @@ public class GamePanel extends SurfaceView implements SurfaceHolder.Callback {
         gameOverTime = System.currentTimeMillis();
       }
     }
+  }
+
+  private void drawCenterText(Canvas canvas, Paint paint, String text) {
+    paint.setTextAlign(Paint.Align.LEFT);
+    canvas.getClipBounds(r);
+    int cHeight = r.height();
+    int cWidth = r.width();
+    paint.getTextBounds(text, 0, text.length(), r);
+    float x = cWidth / 2f - r.width() / 2f - r.left;
+    float y = cHeight / 2f + r.height() / 2f - r.bottom;
+    canvas.drawText(text, x, y, paint);
   }
 
 }
