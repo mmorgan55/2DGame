@@ -5,9 +5,6 @@ import android.graphics.Canvas;
 public class GamePlayScene implements Scene {
   private SceneManager manager;
 
-  public GamePlayScene(SceneManager manager) {
-    this.manager = manager;
-  }
   @Override
   public void update() {
 
@@ -20,6 +17,6 @@ public class GamePlayScene implements Scene {
 
   @Override
   public void terminate() {
-
+    SceneManager.ACTIVE_SCENE = 0;
   }
 }

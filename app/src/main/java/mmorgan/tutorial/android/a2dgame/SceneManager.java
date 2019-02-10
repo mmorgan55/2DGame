@@ -4,13 +4,10 @@ import java.util.ArrayList;
 
 public class SceneManager {
   private ArrayList<Scene> scenes = new ArrayList<>();
-  private int activeScene;
+  public static int ACTIVE_SCENE;
 
   public SceneManager() {
-    activeScene = 0;
+    ACTIVE_SCENE = 0;
   }
-
-  public SceneManager(int activeScene) {
-    this.activeScene = activeScene;
-  }
+  
 }
